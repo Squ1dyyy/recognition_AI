@@ -122,15 +122,15 @@ Content-Type: application/json
 
 <p align="center">
   <a href="https://github.com/DavidVelciug">
-    <img src="https://img.shields.io/badge/Front--End_Author_1-000000?style=for-the-badge&logo=github&logoColor=white" alt="Front-End Author 1">
+    <img src="https://img.shields.io/badge/Front--End-DavidVelciug-000000?style=for-the-badge&logo=github&logoColor=white" alt="DavidVelciug">
   </a>
-  <a href="https://github.com/DavidVelciug">
-    <img src="https://img.shields.io/badge/Front--End_Author_2-555555?style=for-the-badge&logo=github&logoColor=white" alt="Front-End Author 2">
+  <a href="https://github.com/MaxiMGuc">
+    <img src="https://img.shields.io/badge/Front--End-MaxiMGuc-555555?style=for-the-badge&logo=github&logoColor=white" alt="MaxiMGuc">
   </a>
-  <a href="https://github.com/DavidVelciug">
-    <img src="https://img.shields.io/badge/Back--End_Author_3-888888?style=for-the-badge&logo=github&logoColor=white" alt="Back-End Author 3">
+  <a href="https://github.com/Squ1dyyy">
+    <img src="https://img.shields.io/badge/Back--End-Squ1dyyy-888888?style=for-the-badge&logo=github&logoColor=white" alt="Squ1dyyy">
   </a>
-  <a href="https://github.com/DavidVelciug">
-    <img src="https://img.shields.io/badge/Back--End_Author_4-AAAAAA?style=for-the-badge&logo=github&logoColor=white" alt="Back-End Author 4">
+  <a href="https://github.com/JennZen">
+    <img src="https://img.shields.io/badge/Back--End-JennZen-AAAAAA?style=for-the-badge&logo=github&logoColor=white" alt="JennZen">
   </a>
 </p>
