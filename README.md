@@ -1,6 +1,6 @@
 ## ProjectX
 
-<<div align="center">
+<div align="center">
   <img src="src/staticfiles/img/black_on_white.png" alt="Logo" width="500">
   <h1>Recognition AI</h1>
   <p><i>Интеллектуальная система распознавания рукописных символов</i></p>
