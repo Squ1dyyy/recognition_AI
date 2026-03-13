@@ -1,0 +1,11 @@
+{% load static %}
+<div class="dropdown-menu">
+    <button class="dropdown-btn" id="dropdownBtn">
+        Меню <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="dropdown-content" id="dropdownContent">
+        <a href="{% url 'index' %}"><i class="fas fa-home"></i> Главная</a>
+        <a href="{% url 'app' %}"><i class="fas fa-rocket"></i> Приложение</a>
+        <a href="{% url 'aboutproject' %}"><i class="fas fa-book"></i> О проекте</a>
+    </div>
+</div>

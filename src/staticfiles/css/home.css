@@ -1,0 +1,947 @@
+.main-title {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    text-align: center;
+    margin-bottom: clamp(0.8rem, 2vw, 1rem);
+    color: var(--accent-light);
+    text-shadow: 0 0 15px rgba(56, 178, 172, 0.3);
+}
+
+.subtitle {
+    text-align: center;
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    color: var(--text-color);
+    opacity: 0.9;
+    margin-bottom: clamp(2rem, 5vw, 3rem);
+}
+
+.hero-section {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(2rem, 4vw, 3rem);
+    margin: clamp(2rem, 4vw, 3rem) 0;
+}
+
+@media (min-width: 1025px) {
+    .hero-section {
+        grid-template-columns: 2fr 1fr;
+    }
+}
+
+.hero-content h2 {
+    color: var(--accent-light);
+    margin-bottom: clamp(1rem, 2vw, 1.5rem);
+    display: flex;
+    align-items: center;
+    gap: clamp(0.8rem, 1.5vw, 1rem);
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+}
+
+.highlight-box {
+    background: rgba(42, 157, 143, 0.15);
+    border-left: 5px solid var(--accent-color);
+    padding: clamp(1.5rem, 3vw, 2rem);
+    border-radius: 12px;
+    margin-top: clamp(1.5rem, 3vw, 2rem);
+}
+
+.highlight-box h3 {
+    color: var(--accent-light);
+    margin-bottom: clamp(0.8rem, 1.5vw, 1rem);
+    display: flex;
+    align-items: center;
+    gap: clamp(0.6rem, 1.2vw, 0.8rem);
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+}
+
+.highlight-box ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.highlight-box li {
+    margin-bottom: clamp(0.6rem, 1.2vw, 0.8rem);
+    padding-left: clamp(1.5rem, 3vw, 2rem);
+    position: relative;
+    font-size: clamp(1rem, 2vw, 1.1rem);
+}
+
+.highlight-box li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--accent-light);
+    font-weight: bold;
+}
+
+.hero-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.visual-card {
+    background: linear-gradient(135deg, var(--card-bg), rgba(42, 157, 143, 0.1));
+    border: 2px solid var(--border-color);
+    border-radius: clamp(15px, 3vw, 20px);
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    text-align: center;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 400px;
+}
+
+.visual-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.visual-icon {
+    font-size: clamp(3rem, 6vw, 4rem);
+    color: var(--accent-light);
+    margin-bottom: clamp(1rem, 2vw, 1.5rem);
+}
+
+.visual-card h3 {
+    color: var(--accent-light);
+    margin-bottom: clamp(0.8rem, 1.5vw, 1rem);
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+}
+
+.visual-card p {
+    font-size: clamp(1rem, 2vw, 1.1rem);
+}
+
+.mission-statement {
+    background: rgba(42, 157, 143, 0.1);
+    padding: clamp(1.5rem, 3vw, 2rem);
+    border-radius: 12px;
+    margin: clamp(1.5rem, 3vw, 2rem) 0;
+    border: 2px solid var(--border-color);
+}
+
+body.light-theme .mission-statement {
+    background: rgba(212, 230, 249, 0.4);
+}
+
+.features-showcase .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+    gap: clamp(1rem, 2vw, 1.5rem);
+    margin-top: clamp(1.5rem, 3vw, 2rem);
+}
+
+/* ИСПРАВЛЕНИЕ: Фиксированная минимальная высота для карточек */
+.feature-card {
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: clamp(1.5rem, 3vw, 2rem);
+    text-align: center;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 220px;
+    /* Фиксированная минимальная высота */
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-light);
+}
+
+.feature-card i {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    color: var(--accent-light);
+    margin-bottom: clamp(0.8rem, 1.5vw, 1rem);
+}
+
+.feature-card h4 {
+    font-size: clamp(1.1rem, 2.2vw, 1.3rem);
+    margin-bottom: clamp(0.6rem, 1.2vw, 0.8rem);
+    color: var(--accent-light);
+    min-height: 2.5em;
+    /* Фиксированная высота для заголовка */
+}
+
+.feature-card p {
+    font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+    line-height: 1.4;
+    color: var(--text-color);
+    flex-grow: 1;
+    /* Текст занимает оставшееся пространство */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    /* Убираем отступы для лучшего выравнивания */
+}
+
+.tutorial-container {
+    margin: clamp(1.5rem, 3vw, 2rem) 0;
+}
+
+.tutorial-step {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1rem, 2vw, 2rem);
+    margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+    padding: clamp(1.5rem, 3vw, 2rem);
+    background: rgba(42, 157, 143, 0.1);
+    border-radius: 12px;
+    border: 2px solid var(--border-color);
+}
+
+body.light-theme .tutorial-step {
+    background: rgba(212, 230, 249, 0.4);
+}
+
+@media (min-width: 769px) {
+    .tutorial-step {
+        flex-direction: row;
+    }
+}
+
+.step-number {
+    background: var(--accent-color);
+    color: white;
+    width: clamp(40px, 6vw, 50px);
+    height: clamp(40px, 6vw, 50px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+    font-weight: bold;
+    flex-shrink: 0;
+    margin: 0 auto;
+}
+
+@media (min-width: 769px) {
+    .step-number {
+        margin: 0;
+    }
+}
+
+.step-content h3 {
+    color: var(--accent-light);
+    margin-bottom: clamp(0.8rem, 1.5vw, 1rem);
+    display: flex;
+    align-items: center;
+    gap: clamp(0.8rem, 1.5vw, 1rem);
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+}
+
+.tip {
+    background: rgba(42, 157, 143, 0.1);
+    padding: clamp(0.8rem, 1.5vw, 1rem);
+    border-radius: 8px;
+    margin-top: clamp(0.8rem, 1.5vw, 1rem);
+    display: flex;
+    align-items: center;
+    gap: clamp(0.6rem, 1.2vw, 0.8rem);
+    border-left: 4px solid var(--accent-color);
+    font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+}
+
+body.light-theme .tip {
+    background: rgba(212, 230, 249, 0.4);
+}
+
+.process-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: clamp(0.5rem, 1vw, 1rem);
+    margin: clamp(0.8rem, 1.5vw, 1rem) 0;
+}
+
+.process-item {
+    background: rgba(42, 157, 143, 0.2);
+    padding: clamp(0.5rem, 1vw, 0.8rem) clamp(0.8rem, 1.5vw, 1.2rem);
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: clamp(0.9rem, 1.8vw, 1rem);
+    color: var(--text-color);
+}
+
+.knowledge-links {
+    display: flex;
+    gap: clamp(0.8rem, 1.5vw, 1rem);
+    flex-wrap: wrap;
+    margin-top: clamp(0.8rem, 1.5vw, 1rem);
+}
+
+.knowledge-link {
+    background: rgba(42, 157, 143, 0.2);
+    padding: clamp(0.6rem, 1.2vw, 0.8rem) clamp(1rem, 2vw, 1.5rem);
+    border-radius: 25px;
+    text-decoration: none;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    gap: clamp(0.6rem, 1.2vw, 0.8rem);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    font-size: clamp(0.9rem, 1.8vw, 1rem);
+}
+
+.knowledge-link:hover {
+    background: rgba(42, 157, 143, 0.3);
+    border-color: var(--accent-color);
+    transform: translateY(-3px);
+}
+
+.quick-start-guide {
+    background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    border-radius: 15px;
+    margin-top: clamp(2rem, 4vw, 3rem);
+    text-align: center;
+    border: 2px solid var(--border-color);
+}
+
+body.light-theme .quick-start-guide {
+    background: linear-gradient(135deg, var(--secondary-color), rgba(212, 230, 249, 0.8));
+}
+
+.quick-steps {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(1.5rem, 3vw, 2rem);
+    margin-top: clamp(1.5rem, 3vw, 2rem);
+}
+
+@media (min-width: 481px) {
+    .quick-steps {
+        grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+    }
+}
+
+.quick-step {
+    text-align: center;
+}
+
+.quick-step i {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    color: var(--accent-light);
+    margin-bottom: clamp(0.8rem, 1.5vw, 1rem);
+}
+
+.quick-step p {
+    font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+    color: var(--text-color);
+}
+
+.app-link {
+    color: var(--accent-light);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.app-link:hover {
+    text-decoration: underline;
+}
+
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+    gap: clamp(1rem, 2vw, 1.5rem);
+    margin-top: clamp(1.5rem, 3vw, 2rem);
+}
+
+.tech-item {
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: clamp(1.2rem, 2.5vw, 1.5rem);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.tech-item:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-light);
+}
+
+.tech-item i {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    color: var(--accent-light);
+    margin-bottom: clamp(0.8rem, 1.5vw, 1rem);
+}
+
+.tech-item span {
+    display: block;
+    font-weight: bold;
+    color: var(--accent-light);
+    margin-bottom: clamp(0.4rem, 1vw, 0.5rem);
+    font-size: clamp(1rem, 2vw, 1.1rem);
+}
+
+.tech-item p {
+    font-size: clamp(0.9rem, 1.8vw, 1rem);
+    color: var(--text-color);
+}
+
+.arch-diagram {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(0.8rem, 1.5vw, 1rem);
+    margin: clamp(1.5rem, 3vw, 2rem) 0;
+}
+
+.arch-layer {
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    padding: clamp(1.2rem, 2.5vw, 1.5rem);
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+}
+
+.layer-name {
+    font-weight: bold;
+    color: var(--accent-light);
+    margin-bottom: clamp(0.4rem, 1vw, 0.5rem);
+    font-size: clamp(1rem, 2vw, 1.1rem);
+}
+
+.layer-desc {
+    font-size: clamp(0.9rem, 1.8vw, 1rem);
+    color: var(--text-color);
+}
+
+.arch-arrow {
+    color: var(--accent-light);
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+}
+
+.goals-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+    gap: clamp(1rem, 2vw, 1.5rem);
+    margin-top: clamp(1.5rem, 3vw, 2rem);
+}
+
+.goal {
+    display: flex;
+    gap: clamp(1rem, 2vw, 1.5rem);
+    align-items: flex-start;
+}
+
+.goal i {
+    color: var(--accent-light);
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+    margin-top: clamp(0.2rem, 0.5vw, 0.3rem);
+}
+
+.goal h4 {
+    font-size: clamp(1rem, 2vw, 1.1rem);
+    margin-bottom: clamp(0.4rem, 1vw, 0.5rem);
+    color: var(--accent-light);
+}
+
+.goal p {
+    font-size: clamp(0.9rem, 1.8vw, 1rem);
+    color: var(--text-color);
+}
+
+.scope-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(1.5rem, 3vw, 2rem);
+    margin-top: clamp(1.5rem, 3vw, 2rem);
+}
+
+@media (min-width: 769px) {
+    .scope-grid {
+        grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+    }
+}
+
+.scope-item {
+    background: rgba(42, 157, 143, 0.1);
+    padding: clamp(1.5rem, 3vw, 2rem);
+    border-radius: 12px;
+    border: 2px solid var(--border-color);
+}
+
+body.light-theme .scope-item {
+    background: rgba(212, 230, 249, 0.4);
+}
+
+.scope-item i {
+    font-size: clamp(1.8rem, 3.5vw, 2rem);
+    color: var(--accent-light);
+    margin-bottom: clamp(0.8rem, 1.5vw, 1rem);
+}
+
+.scope-item h4 {
+    font-size: clamp(1.1rem, 2.2vw, 1.3rem);
+    margin-bottom: clamp(0.8rem, 1.5vw, 1rem);
+    color: var(--accent-light);
+}
+
+.scope-item ul {
+    padding-left: clamp(1.5rem, 3vw, 2rem);
+}
+
+.scope-item li {
+    margin-bottom: clamp(0.4rem, 1vw, 0.5rem);
+    font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+    color: var(--text-color);
+}
+
+.call-to-action {
+    text-align: center;
+    padding: clamp(2rem, 4vw, 3rem);
+    background: linear-gradient(135deg, rgba(42, 157, 143, 0.15), rgba(13, 35, 55, 0.4));
+    border-radius: 15px;
+    margin-top: clamp(2rem, 4vw, 3rem);
+    border: 2px solid var(--border-color);
+}
+
+body.light-theme .call-to-action {
+    background: linear-gradient(135deg, rgba(212, 230, 249, 0.4), rgba(42, 157, 143, 0.1));
+}
+
+.cta-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1rem, 2vw, 2rem);
+    margin-top: clamp(1.5rem, 3vw, 2rem);
+    align-items: center;
+}
+
+@media (min-width: 481px) {
+    .cta-buttons {
+        flex-direction: row;
+        justify-content: center;
+    }
+}
+
+.cta-button {
+    padding: clamp(0.8rem, 1.5vw, 1rem) clamp(1.5rem, 3vw, 2rem);
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: clamp(0.6rem, 1.2vw, 0.8rem);
+    transition: all 0.3s ease;
+    font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+    min-width: min(200px, 100%);
+    justify-content: center;
+}
+
+@media (min-width: 481px) {
+    .cta-button {
+        min-width: auto;
+    }
+}
+
+.cta-button.primary {
+    background: var(--accent-color);
+    color: white;
+}
+
+.cta-button.secondary {
+    background: transparent;
+    color: var(--accent-light);
+    border: 2px solid var(--accent-color);
+}
+
+.cta-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.audience-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(1.5rem, 3vw, 2rem);
+    margin-top: clamp(1.5rem, 3vw, 2rem);
+}
+
+@media (min-width: 769px) {
+    .audience-grid {
+        grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+    }
+}
+
+/* ИСПРАВЛЕНИЕ: Единая высота для карточек аудитории */
+.audience-card {
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);
+    border-radius: clamp(12px, 2.5vw, 15px);
+    padding: clamp(1.5rem, 3vw, 2rem);
+    text-align: center;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    min-height: 380px;
+    /* Фиксированная минимальная высота */
+}
+
+.audience-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent-light);
+}
+
+.audience-icon {
+    width: clamp(60px, 10vw, 80px);
+    height: clamp(60px, 10vw, 80px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto clamp(1rem, 2vw, 1.5rem);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+.audience-icon.student {
+    background: rgba(42, 157, 143, 0.2);
+    color: var(--accent-light);
+}
+
+.audience-icon.developer {
+    background: rgba(33, 150, 243, 0.2);
+    color: #2196F3;
+}
+
+.audience-icon.teacher {
+    background: rgba(156, 39, 176, 0.2);
+    color: #9C27B0;
+}
+
+.audience-icon.enthusiast {
+    background: rgba(255, 193, 7, 0.2);
+    color: #FFC107;
+}
+
+.audience-card h3 {
+    color: var(--accent-light);
+    margin-bottom: clamp(0.8rem, 1.5vw, 1rem);
+    font-size: clamp(1.1rem, 2.2vw, 1.3rem);
+    min-height: 2.5em;
+    /* Фиксированная высота для заголовка */
+}
+
+.audience-card p {
+    font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+    margin-bottom: clamp(0.8rem, 1.5vw, 1rem);
+    color: var(--text-color);
+    flex-grow: 1;
+    /* Описание занимает оставшееся пространство */
+}
+
+.audience-card ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: clamp(0.8rem, 1.5vw, 1rem);
+    text-align: left;
+}
+
+.audience-card li {
+    margin-bottom: clamp(0.4rem, 1vw, 0.5rem);
+    padding-left: clamp(1.2rem, 2.5vw, 1.5rem);
+    position: relative;
+    font-size: clamp(0.9rem, 1.8vw, 1rem);
+    color: var(--text-color);
+}
+
+.audience-card li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--accent-light);
+}
+
+.learnings {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(1.5rem, 3vw, 2rem);
+    margin: clamp(1.5rem, 3vw, 2rem) 0;
+}
+
+@media (min-width: 769px) {
+    .learnings {
+        grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+    }
+}
+
+.learning-item {
+    display: flex;
+    gap: clamp(1rem, 2vw, 1.5rem);
+    align-items: flex-start;
+}
+
+.learning-item i {
+    color: var(--accent-light);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin-top: clamp(0.2rem, 0.5vw, 0.3rem);
+}
+
+.learning-item h3 {
+    font-size: clamp(1rem, 2vw, 1.1rem);
+    margin-bottom: clamp(0.4rem, 1vw, 0.5rem);
+    color: var(--accent-light);
+}
+
+.learning-item p {
+    font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+    color: var(--text-color);
+}
+
+.testimonial {
+    margin-top: clamp(2rem, 4vw, 3rem);
+    padding: clamp(1.5rem, 3vw, 2rem);
+    background: rgba(42, 157, 143, 0.1);
+    border-radius: 12px;
+    border-left: 5px solid var(--accent-color);
+}
+
+body.light-theme .testimonial {
+    background: rgba(212, 230, 249, 0.4);
+}
+
+blockquote {
+    font-style: italic;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    line-height: 1.6;
+    margin: 0;
+    color: var(--text-color);
+}
+
+cite {
+    display: block;
+    margin-top: clamp(0.8rem, 1.5vw, 1rem);
+    font-weight: bold;
+    color: var(--accent-light);
+    font-size: clamp(0.9rem, 1.8vw, 1rem);
+}
+
+/* Адаптивность как в основном CSS */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
+    .sidebar.show {
+        transform: translateX(0);
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    .dropdown-menu {
+        display: none;
+    }
+
+    .dropdown-content {
+        right: -25px;
+    }
+
+    .youtube-player {
+        width: 320px;
+        right: 20px;
+        bottom: 20px;
+    }
+}
+
+@media (max-width: 768px) and (min-width: 481px) {
+    .logo-text {
+        font-size: 24px;
+    }
+
+    .dropdown-btn,
+    .nav-btn {
+        padding: 12px 20px;
+        font-size: 15px;
+    }
+
+    .header-controls {
+        gap: 15px;
+    }
+
+    .theme-toggle,
+    .music-toggle {
+        width: 48px;
+        height: 48px;
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-text {
+        display: none;
+    }
+
+    .dropdown-btn span {
+        display: none;
+    }
+
+    .dropdown-btn i {
+        margin-left: 0;
+    }
+
+    .youtube-player {
+        width: 95%;
+        left: 2.5%;
+        right: 2.5%;
+        bottom: 15px;
+    }
+
+    .knowledge-links {
+        flex-direction: column;
+    }
+
+    .cta-buttons {
+        width: 100%;
+    }
+
+    .cta-button {
+        width: 100%;
+    }
+
+    /* Адаптация для мобильных */
+    .feature-card {
+        min-height: 200px;
+    }
+
+    .audience-card {
+        min-height: 350px;
+    }
+}
+
+/* Для десктопов: улучшенное расположение */
+@media (min-width: 769px) {
+    .cta-buttons {
+        flex-direction: row;
+        gap: 2rem;
+    }
+
+    .knowledge-links {
+        flex-wrap: nowrap;
+    }
+}
+
+/* 3840px и выше - увеличение на 50% */
+@media (min-width: 3840px) {
+    .main-title {
+        font-size: 4.2rem;
+    }
+
+    .subtitle {
+        font-size: 2.1rem;
+    }
+
+    .visual-icon {
+        font-size: 6rem;
+    }
+
+    .visual-card {
+        padding: 3.75rem;
+        border-radius: 30px;
+    }
+
+    .feature-card {
+        min-height: 330px;
+    }
+
+    .audience-card {
+        min-height: 570px;
+    }
+}
+
+/* 2560px - увеличение на 30% */
+@media (min-width: 2560px) and (max-width: 3839px) {
+    .main-title {
+        font-size: 3.64rem;
+    }
+
+    .subtitle {
+        font-size: 1.82rem;
+    }
+
+    .visual-icon {
+        font-size: 5.2rem;
+    }
+
+    .visual-card {
+        padding: 3.25rem;
+        border-radius: 26px;
+    }
+
+    .feature-card {
+        min-height: 286px;
+    }
+
+    .audience-card {
+        min-height: 494px;
+    }
+}
+
+/* 1920px - базовые размеры */
+
+/* 1440px - уменьшение на 10% */
+@media (max-width: 1919px) and (min-width: 1441px) {
+    .main-title {
+        font-size: 2.52rem;
+    }
+
+    .subtitle {
+        font-size: 1.26rem;
+    }
+
+    .visual-icon {
+        font-size: 3.6rem;
+    }
+
+    .visual-card {
+        padding: 2.25rem;
+        border-radius: 18px;
+    }
+
+    .feature-card {
+        min-height: 198px;
+    }
+
+    .audience-card {
+        min-height: 342px;
+    }
+}
+
+/* Улучшенная поддержка доступности */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .visual-card:hover,
+    .feature-card:hover,
+    .audience-card:hover,
+    .cta-button:hover {
+        transform: none !important;
+    }
+}
+
+.theme-toggle:focus-visible,
+.music-toggle:focus-visible,
+.dropdown-btn:focus-visible,
+.knowledge-link:focus-visible,
+.cta-button:focus-visible {
+    outline: 3px solid var(--accent-light);
+    outline-offset: 3px;
+}

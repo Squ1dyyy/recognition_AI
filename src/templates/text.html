@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Цифровой холст - Рисование цифр{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/text.css' %}">
+{% endblock %}
+
+{% block body %}
+    {% include "components/preloader.html" with loader="Загрузка цифрового холста..." %}
+    {% include "components/notification.html" %}
+
+    <!-- Модальное окно подсказки -->
+    <div class="modal-overlay" id="helpModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Как пользоваться цифровым холстом</h3>
+                <button class="modal-close" id="modalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="help-section">
+                    <h4><i class="fas fa-mouse"></i> Рисование цифр</h4>
+                    <p>Используйте мышь или касание на сенсорном экране для рисования цифры от 0 до 9 в черной области.
+                    </p>
+                    <ul>
+                        <li><strong>Мышь:</strong> Зажмите левую кнопку и рисуйте</li>
+                        <li><strong>Сенсорный экран:</strong> Коснитесь и проведите пальцем</li>
+                        <li><strong>Толщина линии:</strong> Автоматически настроена для лучшего распознавания</li>
+                    </ul>
+                </div>
+
+                <div class="help-section">
+                    <h4><i class="fas fa-robot"></i> Распознавание</h4>
+                    <p>После рисования нажмите кнопку "Распознать" для анализа цифры:</p>
+                    <ul>
+                        <li>Выберите модель ИИ для анализа (CNN, MLP или Perceptron)</li>
+                        <li>Укажите предполагаемую цифру для сравнения</li>
+                        <li>Получите результат распознавания и процент уверенности</li>
+                    </ul>
+                </div>
+
+                <div class="help-section">
+                    <h4><i class="fas fa-chart-bar"></i> Проценты схожести</h4>
+                    <p>В правой части отображаются проценты схожести вашего рисунка со всеми цифрами:</p>
+                    <ul>
+                        <li>Каждая цифра от 0 до 9 имеет свой процент уверенности</li>
+                        <li>Также отображается процент для 'y' (11-й класс) - <strong>неопознанная цифра</strong></li>
+                        <li>Более высокий процент означает большую схожесть</li>
+                        <li>Максимальный процент показывает распознанную цифру</li>
+                    </ul>
+                    <p><strong>Примечание:</strong> Если нейросеть определила, что рисунок не соответствует ни одной из цифр 0-9, будет показана цифра 'y' (неопознанная цифра).</p>
+                </div>
+
+                <div class="help-section">
+                    <h4><i class="fas fa-eraser"></i> Управление</h4>
+                    <ul>
+                        <li><strong>Стереть:</strong> Очищает холст для нового рисунка</li>
+                        <li><strong>Смена темы:</strong> Переключение между темной и светлой темой</li>
+                        <li><strong>Выбор модели:</strong> CNN - для изображений, MLP - универсальная, Perceptron - простая</li>
+                        <li><strong>Цифра 'y':</strong> Обозначает <strong>неопознанную цифру</strong>, когда нейронная сеть не может уверенно определить, что нарисовано</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn" id="modalGotIt">Понятно!</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Шапка с навигацией -->
+    <header>
+        <a href="{% url 'index' %}" class="logo-link">
+            <div class="logo">
+                <div class="logo-placeholder">
+                    <i class="fas fa-paint-brush"></i>
+                </div>
+                <span class="logo-text">Цифровой холст</span>
+            </div>
+        </a>
+
+        <div class="header-controls">
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+
+            {% include "components/variants-selector.html" %}
+            {% include "components/nav-menu.html" %}
+        </div>
+    </header>
+
+    <!-- Основная область содержимого -->
+    <main class="app-content">
+        <section class="drawing-section">
+            <h2>Нарисуйте цифру</h2>
+            <div class="instruction-container">
+                <p>Используйте мышь или touch-экран для рисования цифры в области ниже</p>
+                <button class="help-btn" id="helpBtn">
+                    <i class="fas fa-question-circle"></i> Подсказка
+                </button>
+            </div>
+
+            <div class="drawing-interface">
+                <div class="drawing-controls">
+                    <div class="canvas-container">
+                        <canvas id="drawing-canvas"></canvas>
+                    </div>
+
+                    <div class="expected-number-container">
+                        <label for="expected-number">
+                            Введите предполагаемую цифру:
+                        </label>
+                        <input type="text" id="expected-number" required maxlength="1" pattern="[0-9yY]"
+                            placeholder="0-9 или y" title="y - неопознанная цифра">
+                    </div>
+
+                    <div class="controls">
+                        <button class="control-btn" id="recognize-btn">
+                            <i class="fas fa-search"></i> Распознать
+                        </button>
+
+                        <div class="model-dropdown">
+                            <button class="model-select-btn" id="modelSelectBtn">
+                                <i class="fas fa-circle-nodes"></i> Perceptron
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="model-dropdown-content" id="modelDropdownContent">
+                                <div class="model-option active" data-model="Perceptron">
+                                    <i class="fas fa-circle-nodes"></i> Perceptron
+                                </div>
+                                <div class="model-option" data-model="MLP">
+                                    <i class="fas fa-network-wired"></i> MLP
+                                </div>
+                                <div class="model-option" data-model="CNN">
+                                    <i class="fas fa-brain"></i> CNN
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="control-btn" id="erase-btn">
+                            <i class="fas fa-eraser"></i> Стереть
+                        </button>
+                    </div>
+
+                    <div class="result">
+                        <h3>Результат распознавания:</h3>
+                        <div class="result-text" id="result-text">—</div>
+                    </div>
+                </div>
+
+                <div class="similarity-container">
+                    <h3>Проценты схожести:</h3>
+                    <div class="similarity-grid" id="similarityGrid"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'js/text.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,232 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}3D вариант - Рисование цифр{% endblock %}
+
+{% block extra_css %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <link rel="stylesheet" href="{% static 'css/3d.css' %}">
+{% endblock %}
+
+{% block body %}
+    {% include "components/preloader.html" with loader="Загрузка 3D холста..." %}
+    {% include "components/notification.html" %}
+
+    <!-- Всплывающее окно сообщения -->
+    <div class="message-popup" id="messagePopup">
+        <div class="message-content">
+            <i class="fas fa-exclamation-triangle"></i>
+            <span class="message-text" id="messageText">Это нераспознанная цифра (y)</span>
+            <button class="message-close" id="messageClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Модальное окно с 3D анимацией -->
+    <div class="modal-overlay" id="animationModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>3D Анализ цифры нейросетью CNN</h3>
+                <button class="modal-close" id="animationModalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="animation-3d-container">
+                    <div id="threejs-container"></div>
+                    <div class="animation-stage-indicator" id="stageIndicator">
+                        <span class="stage-text" id="stageText">Инициализация анимации...</span>
+                    </div>
+                    <div class="camera-controls-info">
+                        <h4>Управление камерой:</h4>
+                        <ul>
+                            <li>ЛКМ + движение - вращение</li>
+                            <li>ПКМ + движение - панорамирование</li>
+                            <li>Колесо мыши - приближение/отдаление</li>
+                            <li>Двойной щелчок - сброс камеры</li>
+                        </ul>
+                    </div>
+                    <div class="digits-container" id="digitsContainer"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно для подсказки -->
+    <div class="help-modal" id="helpModal">
+        <div class="help-modal-content">
+            <div class="help-modal-header">
+                <h3>Как пользоваться 3D вариантом распознавания</h3>
+                <button class="help-modal-close" id="helpModalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="help-modal-body">
+                <div class="help-section">
+                    <h4>Основные шаги</h4>
+                    <p>3D вариант распознавания цифр позволяет визуализировать процесс анализа изображения нейросетью в интерактивном 3D пространстве.</p>
+
+                    <ol>
+                        <li><strong>Нарисуйте цифру</strong> в области для рисования черным цветом на белом фоне.</li>
+                        <li><strong>Введите предполагаемую цифру</strong> (опционально) - это поможет нейросети точнее распознать изображение.</li>
+                        <li><strong>Нажмите кнопку "Распознать"</strong> для запуска процесса анализа.</li>
+                        <li><strong>Наблюдайте 3D анимацию</strong>, которая покажет, как нейросеть обрабатывает ваше изображение.</li>
+                    </ol>
+                </div>
+
+                <div class="help-section">
+                    <h4>Процесс 3D визуализации</h4>
+                    <p>Анимация состоит из нескольких этапов:</p>
+
+                    <ul>
+                        <li><strong>Разбивка на пиксели</strong> - ваше изображение преобразуется в сетку 28x28 пикселей</li>
+                        <li><strong>Анализ яркости</strong> - каждый пиксель классифицируется по яркости на две категории:
+                            <ul>
+                                <li><span style="color: #111111">● Черные</span> - пустые области</li>
+                                <li><span style="color: #ffffff">● Белые</span> - основные элементы цифры</li>
+                            </ul>
+                        </li>
+                        <li><strong>Сортировка и подсчет</strong> - пиксели перемещаются к соответствующим счетчикам</li>
+                        <li><strong>Определение результата</strong> - нейросеть анализирует распределение пикселей и определяет цифру</li>
+                    </ul>
+                </div>
+
+                <div class="help-section">
+                    <h4>Управление 3D сценой</h4>
+                    <p>Во время анимации вы можете управлять камерой:</p>
+
+                    <ul>
+                        <li><strong>ЛКМ + движение</strong> - вращение сцены</li>
+                        <li><strong>ПКМ + движение</strong> - панорамирование</li>
+                        <li><strong>Колесо мыши</strong> - приближение/отдаление</li>
+                        <li><strong>Двойной щелчок</strong> - сброс камеры в исходное положение</li>
+                    </ul>
+                </div>
+
+                <div class="help-section">
+                    <h4>Интерпретация результатов</h4>
+                    <p>После завершения анимации вы увидите:</p>
+
+                    <ul>
+                        <li><strong>Распознанную цифру</strong> - результат работы нейросети</li>
+                        <li><strong>Проценты схожести</strong> - уверенность нейросети для каждой цифры от 0 до 9</li>
+                        <li><strong>Нераспознанная цифра (y)</strong> - специальный класс <span class="y-tooltip-text" title="Неопознанная цифра">'y'</span> для неопознанных символов</li>
+                        <li><strong>Подсвеченную цифру</strong> - правильный ответ будет выделен цветом</li>
+                    </ul>
+                </div>
+
+                <div class="help-tip">
+                    <p><strong>Примечание о символе 'y':</strong> Если нейросеть распознала символ 'y', это означает, что она не смогла определить цифру среди 0-9. Это может произойти если:
+                        <ul>
+                            <li>Нарисованный символ не похож ни на одну цифру</li>
+                            <li>Рисунок слишком нечеткий или содержит много шума</li>
+                            <li>Символ нарисован слишком мелко или слишком крупно</li>
+                        </ul>
+                    </p>
+                </div>
+
+                <div class="help-tip">
+                    <p><strong>Совет:</strong> Для лучших результатов рисуйте цифру крупно, занимая большую часть области рисования, и используйте четкие, непрерывные линии.</p>
+                </div>
+            </div>
+            <div class="help-modal-footer">
+                <button class="help-modal-btn" id="helpModalGotIt">
+                    <i class="fas fa-check"></i> Понятно!
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Шапка с навигацией -->
+    <header>
+        <a href="{% url 'index' %}" class="logo-link">
+            <div class="logo">
+                <div class="logo-placeholder"
+                    style="width: 52px; height: 52px; background: var(--accent-color); border-radius: 5px; display: flex; align-items: center; justify-content: center; margin-right: 17px;">
+                    <i class="fas fa-cube" style="color: white; font-size: 26px;"></i>
+                </div>
+                <span class="logo-text">3D рисование цифр</span>
+            </div>
+        </a>
+
+        <div class="header-controls">
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+
+            {% include "components/variants-selector.html" %}
+            {% include "components/nav-menu.html" %}
+        </div>
+    </header>
+
+    <!-- Основное содержимое приложения -->
+    <main class="app-content">
+        <section class="drawing-section">
+            <h2>3D Рисование цифр</h2>
+
+            <div class="instruction-container">
+                <p>Нарисуйте цифру в области для рисования. Результат отобразится в виде 3D анимации.</p>
+                <button class="help-btn" id="helpBtn">
+                    <i class="fas fa-question-circle"></i> Подсказка
+                </button>
+            </div>
+
+            <div class="drawing-interface">
+                <div class="drawing-controls">
+                    <div class="canvas-wrapper">
+                        <div class="canvas-title">Область для рисования</div>
+                        <div class="canvas-container">
+                            <canvas id="drawing-canvas"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="expected-number-container">
+                        <label for="expected-number">
+                            Введите предполагаемую цифру:
+                        </label>
+                        <input type="text" id="expected-number" required maxlength="1" pattern="[0-9]"
+                            placeholder="0-9">
+                    </div>
+
+                    <div class="controls">
+                        <button class="control-btn" id="recognize-btn">
+                            <i class="fas fa-search"></i> Распознать
+                        </button>
+
+                        <div class="model-dropdown">
+                            <button class="model-select-btn" id="modelSelectBtn">
+                                <i class="fas fa-brain"></i> CNN
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="model-dropdown-content" id="modelDropdownContent">
+                                <div class="model-option active" data-model="CNN">
+                                    <i class="fas fa-brain"></i> CNN
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="control-btn" id="erase-btn">
+                            <i class="fas fa-eraser"></i> Стереть
+                        </button>
+                    </div>
+
+                    <div class="result">
+                        <h3>Распознанная цифра:</h3>
+                        <div class="result-text" id="result-text">—</div>
+                    </div>
+                </div>
+
+                <div class="similarity-container">
+                    <h3>Проценты схожести:</h3>
+                    <div class="similarity-grid" id="similarityGrid"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'js/3d.js' %}"></script>
+{% endblock %}

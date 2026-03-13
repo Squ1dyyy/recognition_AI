@@ -1,0 +1,462 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Распознавание рукописных цифр{% endblock %}
+
+{% block extra_css %}
+    <link rel="icon" type="image/x-icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block body %}
+    {% include "components/header.html" %}
+    {% include "components/youtube-player.html" %}
+    {% include "components/side-bar.html" %}
+
+    <!-- Основная область содержимого -->
+    <main class="main-content">
+        <!-- Приветственный раздел -->
+        <section id="welcome-section" class="content-section">
+            <h1 class="main-title">Добро пожаловать в мир нейронных сетей!</h1>
+            <p class="subtitle">Интерактивная платформа для изучения и визуализации распознавания рукописных цифр</p>
+
+            <div class="hero-section">
+                <div class="hero-content">
+                    <h2><i class="fas fa-magic"></i> Уникальный образовательный проект</h2>
+                    <p>Этот сайт — интерактивная лаборатория для изучения машинного обучения через практику. Здесь теория встречается с практикой в увлекательном формате визуализации работы нейронных сетей.</p>
+
+                    <div class="highlight-box">
+                        <h3><i class="fas fa-lightbulb"></i> Почему именно наш проект?</h3>
+                        <ul>
+                            <li><strong>Три разных интерфейса</strong> для понимания работы нейросетей с разных сторон</li>
+                            <li><strong>Визуализация в реальном времени</strong> процесса распознавания</li>
+                            <li><strong>Образовательный подход</strong> — учим сложные концепции через простые примеры</li>
+                            <li><strong>Интерактивные демонстрации</strong> для лучшего усвоения материала</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="visual-card">
+                        <div class="visual-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3>Живые нейронные сети</h3>
+                        <p>Наблюдайте за работой ИИ в реальном времени</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Раздел "О сайте" -->
+        <section id="about-site" class="content-section">
+            <h2><i class="fas fa-info-circle"></i> О нашем сайте</h2>
+
+            <div class="site-description">
+                <p>Этот образовательный проект создан для демонстрации работы нейронных сетей в области компьютерного зрения. Мы превращаем сложные алгоритмы машинного обучения в наглядные интерактивные демонстрации.</p>
+
+                <div class="mission-statement">
+                    <h3><i class="fas fa-bullseye"></i> Наша миссия</h3>
+                    <p>Сделать изучение нейронных сетей доступным, понятным и увлекательным для всех — от студентов до профессионалов.</p>
+                </div>
+
+                <div class="features-showcase">
+                    <h3><i class="fas fa-star"></i> Ключевые особенности</h3>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <i class="fas fa-paint-brush"></i>
+                            <h4>Интерактивное рисование</h4>
+                            <p>Рисуйте цифры в реальном времени и сразу видите результат распознавания</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-cube"></i>
+                            <h4>3D визуализация</h4>
+                            <p>Наблюдайте за работой нейросети в трехмерном пространстве</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-chart-line"></i>
+                            <h4>Детальная аналитика</h4>
+                            <p>Получайте подробную статистику по каждому распознаванию</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-book"></i>
+                            <h4>Образовательный контент</h4>
+                            <p>Теория, объясненная простым языком с примерами</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Раздел "Обучалка" -->
+        <section id="tutorial" class="content-section">
+            <h2><i class="fas fa-graduation-cap"></i> Обучающий центр</h2>
+
+            <div class="tutorial-container">
+                <div class="tutorial-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3><i class="fas fa-mouse-pointer"></i> Начните с рисования</h3>
+                        <p>Перейдите в раздел приложения и нарисуйте цифру от 0 до 9 на холсте. Не беспокойтесь о аккуратности — нейросеть обучена распознавать разные стили письма.</p>
+                        <div class="tip">
+                            <i class="fas fa-lightbulb"></i>
+                            <strong>Совет:</strong> Рисуйте цифры крупно, занимая большую часть холста
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tutorial-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3><i class="fas fa-search"></i> Выберите модель ИИ</h3>
+                        <p>Экспериментируйте с разными архитектурами нейронных сетей:
+                            <ul>
+                                <li><strong>Perceptron</strong> — простейшая модель для понимания основ</li>
+                                <li><strong>MLP</strong> — многослойный перцептрон для более точного распознавания</li>
+                                <li><strong>CNN</strong> — сверточные сети для работы с изображениями</li>
+                            </ul>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="tutorial-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3><i class="fas fa-eye"></i> Наблюдайте процесс распознавания</h3>
+                        <p>В режиме реального времени смотрите, как нейросеть анализирует ваш рисунок:
+                            <div class="process-visual">
+                                <div class="process-item">Изображение →</div>
+                                <div class="process-item">Предобработка →</div>
+                                <div class="process-item">Анализ нейросетью →</div>
+                                <div class="process-item">Результат</div>
+                            </div>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="tutorial-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3><i class="fas fa-chart-bar"></i> Анализируйте результаты</h3>
+                        <p>Изучайте подробную статистику распознавания:
+                            <ul>
+                                <li>Распознанная цифра с процентом уверенности</li>
+                                <li>Распределение вероятностей по всем цифрам</li>
+                                <li>Визуализация внутренней работы сети</li>
+                                <li>Сравнение разных моделей между собой</li>
+                            </ul>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="tutorial-step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3><i class="fas fa-book-open"></i> Углубляйте знания</h3>
+                        <p>Используйте теоретические разделы сайта для понимания:
+                            <div class="knowledge-links">
+                                <a href="{% url 'section' 'section-ml' %}" class="knowledge-link"><i class="fas fa-robot"></i> Основы ML</a>
+                                <a href="{% url 'section' 'section-cnn' %}" class="knowledge-link"><i class="fas fa-network-wired"></i> Архитектуры сетей</a>
+                                <a href="{% url 'section' 'section-gradient' %}" class="knowledge-link"><i class="fas fa-chart-line"></i> Методы обучения</a>
+                            </div>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quick-start-guide">
+                <h3><i class="fas fa-bolt"></i> Быстрый старт</h3>
+                <div class="quick-steps">
+                    <div class="quick-step">
+                        <i class="fas fa-play-circle"></i>
+                        <p>Нажмите <a href="{% url 'app' %}" class="app-link">"Приложение"</a> в меню</p>
+                    </div>
+                    <div class="quick-step">
+                        <i class="fas fa-mouse"></i>
+                        <p>Нарисуйте любую цифру от 0 до 9</p>
+                    </div>
+                    <div class="quick-step">
+                        <i class="fas fa-rocket"></i>
+                        <p>Нажмите "Распознать" и наблюдайте магию ИИ!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Раздел "О проекте" -->
+        <section id="about-project" class="content-section">
+            <h2><i class="fas fa-code"></i> Технические детали проекта</h2>
+
+            <div class="project-details">
+                <div class="tech-stack">
+                    <h3><i class="fas fa-layer-group"></i> Технологический стек</h3>
+                    <div class="tech-grid">
+                        <div class="tech-item">
+                            <i class="fab fa-html5"></i>
+                            <span>HTML5 & CSS3</span>
+                            <p>Современная верстка с анимациями</p>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-js"></i>
+                            <span>JavaScript ES6+</span>
+                            <p>Интерактивность и логика приложения</p>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fas fa-brain"></i>
+                            <span>Нейронные сети</span>
+                            <p>MLP, CNN, Perceptron модели</p>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fas fa-server"></i>
+                            <span>Backend API</span>
+                            <p>Python + FastAPI для обработки</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="architecture">
+                    <h3><i class="fas fa-sitemap"></i> Архитектура проекта</h3>
+                    <div class="arch-diagram">
+                        <div class="arch-layer">
+                            <div class="layer-name">Пользовательский интерфейс</div>
+                            <div class="layer-desc">Три варианта: текстовый, 2D, 3D</div>
+                        </div>
+                        <div class="arch-arrow">↓</div>
+                        <div class="arch-layer">
+                            <div class="layer-name">Логика приложения</div>
+                            <div class="layer-desc">Обработка ввода, нормализация, отправка запросов</div>
+                        </div>
+                        <div class="arch-arrow">↓</div>
+                        <div class="arch-layer">
+                            <div class="layer-name">Серверная обработка</div>
+                            <div class="layer-desc">Нейронные сети, анализ изображений, возврат результатов</div>
+                        </div>
+                        <div class="arch-arrow">↓</div>
+                        <div class="arch-layer">
+                            <div class="layer-name">Визуализация</div>
+                            <div class="layer-desc">Отображение результатов, анимации, статистика</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="educational-goals">
+                    <h3><i class="fas fa-graduation-cap"></i> Образовательные цели</h3>
+                    <div class="goals-list">
+                        <div class="goal">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Демонстрация работы ИИ</h4>
+                                <p>Показать, как нейронные сети "видят" и "думают"</p>
+                            </div>
+                        </div>
+                        <div class="goal">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Интерактивное обучение</h4>
+                                <p>Учиться через практику и эксперименты</p>
+                            </div>
+                        </div>
+                        <div class="goal">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Сравнение подходов</h4>
+                                <p>Показать разницу между простыми и сложными моделями</p>
+                            </div>
+                        </div>
+                        <div class="goal">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Визуализация процессов</h4>
+                                <p>Сделать невидимые процессы обучения видимыми</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-scope">
+                    <h3><i class="fas fa-tasks"></i> Что вы найдете на сайте</h3>
+                    <div class="scope-grid">
+                        <div class="scope-item">
+                            <i class="fas fa-paint-brush"></i>
+                            <h4>Три интерфейса</h4>
+                            <ul>
+                                <li>Текстовый — для быстрого тестирования</li>
+                                <li>2D — с параллельным отображением</li>
+                                <li>3D — с анимацией работы нейросети</li>
+                            </ul>
+                        </div>
+                        <div class="scope-item">
+                            <i class="fas fa-brain"></i>
+                            <h4>Три модели ИИ</h4>
+                            <ul>
+                                <li>Perceptron — базовые принципы</li>
+                                <li>MLP — многослойная архитектура</li>
+                                <li>CNN — для обработки изображений</li>
+                            </ul>
+                        </div>
+                        <div class="scope-item">
+                            <i class="fas fa-book"></i>
+                            <h4>Образовательный контент</h4>
+                            <ul>
+                                <li>Теория машинного обучения</li>
+                                <li>История развития ИИ</li>
+                                <li>Практические примеры</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="call-to-action">
+                <h3><i class="fas fa-rocket"></i> Готовы начать?</h3>
+                <p>Присоединяйтесь к тысячам пользователей, которые уже открыли для себя увлекательный мир нейронных сетей!</p>
+                <div class="cta-buttons">
+                    <a href="{% url 'app' %}" class="cta-button primary">
+                        <i class="fas fa-play"></i> Начать рисовать
+                    </a>
+                    <a href="{% url 'section' 'section-ml' %}" class="cta-button secondary">
+                        <i class="fas fa-book"></i> Изучить теорию
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Раздел "Для кого этот сайт" -->
+        <section id="audience" class="content-section">
+            <h2><i class="fas fa-users"></i> Для кого этот сайт?</h2>
+
+            <div class="audience-grid">
+                <div class="audience-card">
+                    <div class="audience-icon student">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Студенты</h3>
+                    <p>Идеальный инструмент для понимания основ машинного обучения и нейронных сетей через практику</p>
+                    <ul>
+                        <li>Наглядные примеры работы алгоритмов</li>
+                        <li>Интерактивные демонстрации</li>
+                        <li>Структурированная теория</li>
+                    </ul>
+                </div>
+
+                <div class="audience-card">
+                    <div class="audience-icon developer">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Разработчики</h3>
+                    <p>Практическое понимание работы нейронных сетей для реализации в своих проектах</p>
+                    <ul>
+                        <li>Примеры архитектур сетей</li>
+                        <li>API взаимодействие</li>
+                        <li>Визуализация процессов</li>
+                    </ul>
+                </div>
+
+                <div class="audience-card">
+                    <div class="audience-icon teacher">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3>Преподаватели</h3>
+                    <p>Готовый образовательный ресурс для демонстрации работы ИИ на занятиях</p>
+                    <ul>
+                        <li>Готовые примеры</li>
+                        <li>Интерактивные материалы</li>
+                        <li>Пошаговые объяснения</li>
+                    </ul>
+                </div>
+
+                <div class="audience-card">
+                    <div class="audience-icon enthusiast">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Энтузиасты</h3>
+                    <p>Увлекательное знакомство с миром искусственного интеллекта без сложной математики</p>
+                    <ul>
+                        <li>Простой интерфейс</li>
+                        <li>Интересные эксперименты</li>
+                        <li>Быстрые результаты</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Раздел "Что нового" -->
+        <section id="whats-new" class="content-section">
+            <h2><i class="fas fa-bell"></i> Что вы узнаете?</h2>
+
+            <div class="learnings">
+                <div class="learning-item">
+                    <i class="fas fa-eye"></i>
+                    <div>
+                        <h3>Как нейронные сети "видят"</h3>
+                        <p>Поймете принципы обработки изображений и распознавания паттернов</p>
+                    </div>
+                </div>
+
+                <div class="learning-item">
+                    <i class="fas fa-cogs"></i>
+                    <div>
+                        <h3>Как обучаются алгоритмы</h3>
+                        <p>Увидите процесс обучения ИИ на конкретных примерах</p>
+                    </div>
+                </div>
+
+                <div class="learning-item">
+                    <i class="fas fa-project-diagram"></i>
+                    <div>
+                        <h3>Архитектуры нейронных сетей</h3>
+                        <p>Узнаете разницу между простыми и сложными моделями</p>
+                    </div>
+                </div>
+
+                <div class="learning-item">
+                    <i class="fas fa-chart-bar"></i>
+                    <div>
+                        <h3>Метрики качества</h3>
+                        <p>Научитесь оценивать точность работы ИИ</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial">
+                <blockquote>
+                    <p>"Этот проект превратил сложные концепции машинного обучения в увлекательную игру. Теперь я понимаю, как работают нейронные сети!"</p>
+                    <cite>— Алексей, студент компьютерных наук</cite>
+                </blockquote>
+            </div>
+        </section>
+    </main>
+
+    <!-- Иконка опросника -->
+    <div class="survey-icon hidden" id="surveyIcon">
+        <i class="fas fa-poll"></i>
+    </div>
+
+    <!-- Модальное окно опросника -->
+    <div class="survey-modal" id="surveyModal">
+        <div class="survey-container">
+            <div class="survey-header">
+                <h2>Опрос по теме сайта</h2>
+                <p>Пожалуйста, ответьте на несколько вопросов</p>
+            </div>
+
+            <div class="survey-progress">
+                <div class="survey-progress-bar" id="surveyProgress"></div>
+            </div>
+
+            <div id="surveyContent"></div>
+
+            <div class="survey-navigation">
+                <button class="survey-btn" id="prevBtn" disabled>Назад</button>
+                <button class="survey-btn" id="nextBtn">Далее</button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'js/state-manager.js' %}"></script>
+    <script src="{% static 'js/index.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% load static %}
+<header>
+    <a href="{% url 'index' %}" class="logo-link">
+        <div class="logo">
+            {% block header_logo %}
+            <img src="{% static 'img/Безымянный.png' %}" alt="Логотип">
+            {% endblock %}
+            <span class="logo-text">{{ logo_text|default:"Цифровой холст" }}</span>
+        </div>
+    </a>
+
+    <div class="header-controls">
+        <button class="theme-toggle" id="themeToggle">
+            <i class="fas fa-moon"></i>
+        </button>
+
+        {% include "components/variants-selector.html" %}
+        {% include "components/nav-menu.html" %}
+    </div>
+</header>
