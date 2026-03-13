@@ -36,7 +36,7 @@
 <b>Git clone & path to Source Code File<b>
 
 ```bash
-git clone "https://github.com/DavidVelciug/ProjectX.git"
+git clone "https://github.com/Squ1dyyy/recognition_AI.git"
 cd src
 ```
 
@@ -52,6 +52,7 @@ venv\Scripts\activate       # Windows
 
 ```bash
 pip install -r req.txt
+cd src
 python manage.py runserver
 ```
 
