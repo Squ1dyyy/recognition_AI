@@ -1,8 +1,12 @@
 ## ProjectX
 
-<p align="center">
-  <img src="https://github.com/DavidVelciug/ProjectX/blob/master/static/img/%D0%91%D0%B5%D0%B7%D1%8B%D0%BC%D1%8F%D0%BD%D0%BD%D1%8B%D0%B9.png" alt="Logo" width="300">
-</p>
+<<div align="center">
+  <img src="src/staticfiles/img/black_on_white.png" alt="Logo" width="500">
+  <h1>Recognition AI</h1>
+  <p><i>Интеллектуальная система распознавания рукописных символов</i></p>
+</div>
+
+---
 
 ## About
 
@@ -52,7 +56,6 @@ venv\Scripts\activate       # Windows
 
 ```bash
 pip install -r req.txt
-cd src
 python manage.py runserver
 ```
 
